@@ -18,7 +18,7 @@ const cls = page => page.evaluate(() => ({
   n: window.__ls.length,
 }));
 async function unlock(page, hash = '') {
-  await page.goto('/' + hash);
+  await page.goto('./' + hash);
   await page.fill('#gate-pass', PASS);
   await page.press('#gate-pass', 'Enter');
   await expect(page.locator('#app')).toBeVisible();
@@ -27,7 +27,7 @@ const tab = (page, name) => page.click(`.tabs [data-tab="${name}"]`);
 const confirm = page => page.locator('#c-ok').click();
 
 test('privacy: gate, noindex, robots, footer', async ({ page, request }) => {
-  await page.goto('/');
+  await page.goto('./');
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex.*nofollow/);
   await expect(page.locator('#app')).toBeHidden();
   await page.fill('#gate-pass', 'wrong');
@@ -37,7 +37,7 @@ test('privacy: gate, noindex, robots, footer', async ({ page, request }) => {
   await page.press('#gate-pass', 'Enter');
   await expect(page.locator('#app')).toBeVisible();
   await expect(page.locator('.foot')).toHaveText('Estimates from user-entered data. Not affiliated with 2K or Take-Two.');
-  const robots = await (await request.get('/robots.txt')).text();
+  const robots = await (await request.get('robots.txt')).text();
   expect(robots).toMatch(/User-agent: \*\s+Disallow: \//);
   await page.reload();
   await expect(page.locator('#app')).toBeVisible(); // stays unlocked on this device
