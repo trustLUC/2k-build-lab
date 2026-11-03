@@ -1,0 +1,41 @@
+{
+  "schema": "2k-build-lab/v1",
+  "game": "NBA 2K27",
+  "note": "EXAMPLE rows with made-up placeholder numbers to show how the tool works. NOT real 2K27 data. Delete them from the Data tab.",
+  "rows": [
+    {
+      "id": "example-1",
+      "position": "PG",
+      "heightIn": 76,
+      "weightLb": 200,
+      "wingspanIn": 80,
+      "caps": {
+        "threePoint": { "min": 25, "max": 90 },
+        "ballHandle": { "min": 25, "max": 90 },
+        "speed": { "min": 25, "max": 85 },
+        "drivingDunk": { "min": 25, "max": 70 },
+        "perimeterDefense": { "min": 25, "max": 80 }
+      },
+      "source": "EXAMPLE",
+      "notes": "EXAMPLE placeholder numbers, not real game data",
+      "example": true
+    },
+    {
+      "id": "example-2",
+      "position": "SF",
+      "heightIn": 80,
+      "weightLb": 220,
+      "wingspanIn": 84,
+      "caps": {
+        "threePoint": { "min": 25, "max": 80 },
+        "ballHandle": { "min": 25, "max": 75 },
+        "speed": { "min": 25, "max": 75 },
+        "drivingDunk": { "min": 25, "max": 90 },
+        "perimeterDefense": { "min": 25, "max": 90 }
+      },
+      "source": "EXAMPLE",
+      "notes": "EXAMPLE placeholder numbers, not real game data",
+      "example": true
+    }
+  ]
+}

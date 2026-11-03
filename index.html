@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0a0a0b">
+<title>Build Lab · private</title>
+<link rel="stylesheet" href="styles.css?v=2">
+<script type="module" src="js/app.js?v=2"></script>
+</head>
+<body>
+<div id="gate" class="gate">
+  <form id="gate-form" class="gate-card" autocomplete="off">
+    <div class="brand"><span class="dot"></span>Build Lab</div>
+    <label for="gate-pass">Passcode</label>
+    <input id="gate-pass" type="password" autocomplete="current-password" required>
+    <button type="submit" class="btn primary">Unlock</button>
+    <p id="gate-msg" class="gate-msg" aria-live="polite">&nbsp;</p>
+  </form>
+</div>
+
+<div id="app" class="app" hidden>
+  <header class="top">
+    <div class="brand"><span class="dot"></span>Build Lab <small>2K27 · private</small></div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" id="t-find" data-tab="find" aria-selected="true">Find</button>
+      <button role="tab" id="t-enter" data-tab="enter" aria-selected="false">Enter</button>
+      <button role="tab" id="t-data" data-tab="data" aria-selected="false">Data</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="tab-find" class="panel" role="tabpanel" aria-labelledby="t-find">
+      <div class="card">
+        <div class="row3">
+          <label>Position<select id="f-pos"><option value="">Any</option></select></label>
+          <label>Min height<input id="f-hmin" placeholder="6'3" inputmode="text"></label>
+          <label>Max height<input id="f-hmax" placeholder="6'9" inputmode="text"></label>
+        </div>
+        <div class="card-head"><h2>Target minimums</h2><button id="f-clear" class="btn ghost sm" type="button">Clear</button></div>
+        <div id="f-targets" class="attr-grid"></div>
+      </div>
+      <p id="f-summary" class="summary" aria-live="polite">&nbsp;</p>
+      <ol id="f-results" class="results"></ol>
+    </section>
+
+    <section id="tab-enter" class="panel" role="tabpanel" aria-labelledby="t-enter" hidden>
+      <div class="card">
+        <div class="card-head"><h2>Paste a row</h2></div>
+        <textarea id="e-paste" rows="2" placeholder="JSON row, or CSV/TSV: PG, 6'5, 210, 6'9, then one cell per attribute in order (max or min-max)"></textarea>
+        <div class="actions"><button id="e-paste-btn" class="btn" type="button">Fill form</button><span id="e-paste-msg" class="msg">&nbsp;</span></div>
+      </div>
+      <form id="e-form" class="card" autocomplete="off">
+        <div class="card-head"><h2 id="e-title">New row</h2><span class="hint">Ctrl/⌘ + Enter saves</span></div>
+        <div class="row4">
+          <label>Position<select id="e-pos" required></select></label>
+          <label>Height<input id="e-height" placeholder="6'5" required></label>
+          <label>Weight (lb)<input id="e-weight" inputmode="numeric" placeholder="210" required></label>
+          <label>Wingspan<input id="e-wing" placeholder="6'9" required></label>
+        </div>
+        <div class="cap-head"><span>Attribute</span><span>Min</span><span>Max</span></div>
+        <div id="e-caps" class="cap-grid"></div>
+        <div class="row2">
+          <label>Source<input id="e-source" placeholder="e.g. my builder screenshot 11/2"></label>
+          <label>Notes<input id="e-notes"></label>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn primary" id="e-save">Save row</button>
+          <button type="button" class="btn ghost" id="e-reset">Clear form</button>
+          <span id="e-msg" class="msg" aria-live="polite">&nbsp;</span>
+        </div>
+      </form>
+    </section>
+
+    <section id="tab-data" class="panel" role="tabpanel" aria-labelledby="t-data" hidden>
+      <div class="card">
+        <div class="card-head"><h2>Your data</h2><span id="d-count" class="hint">&nbsp;</span></div>
+        <div class="actions wrap">
+          <button id="d-export" class="btn" type="button">Export JSON</button>
+          <label class="btn" for="d-import">Import JSON</label>
+          <input id="d-import" type="file" accept="application/json,.json" class="sr-only">
+          <button id="d-examples-del" class="btn ghost" type="button">Remove examples</button>
+          <button id="d-examples-add" class="btn ghost" type="button">Load examples</button>
+        </div>
+        <span id="d-msg" class="msg" aria-live="polite">&nbsp;</span>
+      </div>
+      <div class="card"><ul id="d-rows" class="rows"></ul></div>
+      <div class="card">
+        <div class="card-head"><h2>Backups</h2><span class="hint">auto-saved before every write</span></div>
+        <ul id="d-backups" class="rows"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">Estimates from user-entered data. Not affiliated with 2K or Take-Two.</footer>
+</div>
+
+<dialog id="confirm" class="dialog">
+  <form method="dialog">
+    <h2 id="c-title">Confirm change</h2>
+    <div id="c-body" class="diff"></div>
+    <div class="actions end">
+      <button value="cancel" class="btn ghost" id="c-cancel">Cancel</button>
+      <button value="ok" class="btn primary" id="c-ok" autofocus>Confirm</button>
+    </div>
+  </form>
+</dialog>
+</body>
+</html>

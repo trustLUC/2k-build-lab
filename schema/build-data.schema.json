@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "2k-build-lab/v1",
+  "title": "2K Build Lab dataset (owner-entered)",
+  "type": "object",
+  "required": [
+    "schema",
+    "rows"
+  ],
+  "properties": {
+    "schema": {
+      "const": "2k-build-lab/v1"
+    },
+    "game": {
+      "type": "string"
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/row"
+      }
+    }
+  },
+  "$defs": {
+    "cap": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "max": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 99
+        }
+      },
+      "additionalProperties": false
+    },
+    "row": {
+      "type": "object",
+      "required": [
+        "id",
+        "position",
+        "heightIn",
+        "weightLb",
+        "wingspanIn",
+        "caps"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "position": {
+          "enum": [
+            "PG",
+            "SG",
+            "SF",
+            "PF",
+            "C"
+          ]
+        },
+        "heightIn": {
+          "type": "number",
+          "minimum": 60,
+          "maximum": 96
+        },
+        "weightLb": {
+          "type": "number",
+          "minimum": 100,
+          "maximum": 400
+        },
+        "wingspanIn": {
+          "type": "number",
+          "minimum": 60,
+          "maximum": 108
+        },
+        "caps": {
+          "type": "object",
+          "properties": {
+            "closeShot": {
+              "$ref": "#/$defs/cap"
+            },
+            "drivingLayup": {
+              "$ref": "#/$defs/cap"
+            },
+            "drivingDunk": {
+              "$ref": "#/$defs/cap"
+            },
+            "standingDunk": {
+              "$ref": "#/$defs/cap"
+            },
+            "postControl": {
+              "$ref": "#/$defs/cap"
+            },
+            "midRange": {
+              "$ref": "#/$defs/cap"
+            },
+            "threePoint": {
+              "$ref": "#/$defs/cap"
+            },
+            "freeThrow": {
+              "$ref": "#/$defs/cap"
+            },
+            "passAccuracy": {
+              "$ref": "#/$defs/cap"
+            },
+            "ballHandle": {
+              "$ref": "#/$defs/cap"
+            },
+            "speedWithBall": {
+              "$ref": "#/$defs/cap"
+            },
+            "interiorDefense": {
+              "$ref": "#/$defs/cap"
+            },
+            "perimeterDefense": {
+              "$ref": "#/$defs/cap"
+            },
+            "steal": {
+              "$ref": "#/$defs/cap"
+            },
+            "block": {
+              "$ref": "#/$defs/cap"
+            },
+            "offensiveRebound": {
+              "$ref": "#/$defs/cap"
+            },
+            "defensiveRebound": {
+              "$ref": "#/$defs/cap"
+            },
+            "speed": {
+              "$ref": "#/$defs/cap"
+            },
+            "agility": {
+              "$ref": "#/$defs/cap"
+            },
+            "strength": {
+              "$ref": "#/$defs/cap"
+            },
+            "vertical": {
+              "$ref": "#/$defs/cap"
+            }
+          },
+          "additionalProperties": false
+        },
+        "capBreakers": {
+          "type": "object",
+          "description": "Reserved (piece 2): attrKey -> ladder of {step, newMax, cost} entries",
+          "additionalProperties": {
+            "type": "array"
+          }
+        },
+        "badgeReqs": {
+          "type": "array",
+          "description": "Reserved (piece 3): badge/takeover/animation requirements",
+          "items": {
+            "type": "object"
+          }
+        },
+        "source": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "example": {
+          "type": "boolean",
+          "description": "true = placeholder example row, not real data"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
